@@ -1,5 +1,5 @@
 {
-  "name": "@scaffold/cli",
+  "name": "@scaffold/react-app-template",
   "version": "0.0.9",
   "description": "",
   "engines": {
@@ -9,7 +9,9 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint --ext .js ./src ",
-    "dev": "node ./node_modules/@scaffold/cli/bin/dev.js",
+    "dev": "scaffold-cli-service dev",
+    "build": "scaffold-cli-service build",
+    "analyzer": "scaffold-cli-service analyzer",
     "pre-commit": "npm run test"
   },
   "browerslist": [
@@ -35,7 +37,6 @@
   },
   "homepage": "https://github.com/Objectivezt/dva-react-webpack-boilerplate#readme",
   "dependencies": {
-    "@scaffold/cli": "0.3.2",
-    "react-router-dom": "5.1.2"
+    "@scaffold/cli-service": "^0.4.2"
   }
 }

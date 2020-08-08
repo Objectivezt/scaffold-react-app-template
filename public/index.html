@@ -6,12 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Web site created using create-react-app" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <% for(var key in htmlWebpackPlugin.options.CssAryUrl) {%>
+    <link rel="stylesheet" type="text/css" href="<%= htmlWebpackPlugin.options.CssAryUrl[key] %>" />
+    <%}%>
     <title>React App</title>
+    <%if(htmlWebpackPlugin.options.ScriptStringBefore) {%>
+    <script type="text/javascript">
+      <%= htmlWebpackPlugin.options.ScriptStringBefore %>
+    </script>
+    <%}%>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <% for(var key in htmlWebpackPlugin.options.JSAryUrl) {%>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.options.JSAryUrl[key] %>"></script>
+    <%}%>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <%if(htmlWebpackPlugin.options.ScriptStringAfter) {%>
+    <script type="text/javascript">
+      <%= htmlWebpackPlugin.options.ScriptStringAfter %>
+    </script>
+    <%}%>
   </body>
 </html>

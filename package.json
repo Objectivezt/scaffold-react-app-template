@@ -37,6 +37,6 @@
   },
   "homepage": "https://github.com/Objectivezt/dva-react-webpack-boilerplate#readme",
   "dependencies": {
-    "@scaffold/cli-service": "^0.4.2"
+    "@scaffold/cli-service": "^0.6.1"
   }
 }

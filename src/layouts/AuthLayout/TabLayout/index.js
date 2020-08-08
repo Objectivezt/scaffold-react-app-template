@@ -63,6 +63,7 @@ export default class TabLayout extends React.Component {
     };
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillMount() {
     const { name, keys, component } = this.props;
     if (keys === '/' || !name) {
@@ -74,6 +75,7 @@ export default class TabLayout extends React.Component {
     this.setState({ panes, activeKey });
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     const { location, whiteRouter, noPermission, name, keys, component } = nextProps;
     if (!isInArray(whiteRouter, location.pathname)) {

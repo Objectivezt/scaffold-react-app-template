@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 // import Ellipsis from '@components/Ellipsis';
 import { globalColProps } from '@common/config'
 import { Divider, Icon, Modal, Select, Tooltip, message, Menu, Col, Form } from 'antd'
@@ -13,12 +13,12 @@ const { Item: MenuItem } = Menu
  */
 export function questionTooltip(text) {
   return (
-    <Fragment>
+    <>
       &nbsp; &nbsp;
       <Tooltip placement='right' title={text}>
         <Icon type='question-circle-o' style={{ color: 'red' }} />
       </Tooltip>
-    </Fragment>
+    </>
   )
 }
 

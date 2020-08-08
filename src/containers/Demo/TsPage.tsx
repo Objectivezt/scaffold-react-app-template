@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from 'antd';
 
-const { Component, Fragment } = React;
+const { Component } = React;
 
 interface Props {
   name: string;
@@ -28,12 +28,12 @@ export default class Hi extends Component<Props, State> {
 
   render() {
     return (
-      <Fragment>
+      <>
         <p>你点击了 {this.state.count} 1111次</p>
         <Button onClick={() => this.sum()}>
           Hi {this.props.name}
         </Button>
-      </Fragment>
+      </>
     )
   }
 }

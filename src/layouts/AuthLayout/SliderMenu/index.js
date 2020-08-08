@@ -21,7 +21,7 @@ const getIcon = icon => {
   return icon;
 };
 
-export const getMeunMatchKeys = (flatMenuKeys, path) =>
+export const getMenuMatchKeys = (flatMenuKeys, path) =>
   flatMenuKeys.filter(item => pathToRegexp(item).test(path));
 
 export default class SliderMenu extends PureComponent {
@@ -34,6 +34,7 @@ export default class SliderMenu extends PureComponent {
     };
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.setState({
@@ -52,7 +53,7 @@ export default class SliderMenu extends PureComponent {
       location: { pathname },
     } = props || this.props;
     return urlToList(pathname)
-      .map(item => getMeunMatchKeys(this.flatMenuKeys, item)[0])
+      .map(item => getMenuMatchKeys(this.flatMenuKeys, item)[0])
       .filter(item => item);
   }
 
@@ -160,7 +161,7 @@ export default class SliderMenu extends PureComponent {
     const {
       location: { pathname },
     } = this.props;
-    return urlToList(pathname).map(itemPath => getMeunMatchKeys(this.flatMenuKeys, itemPath).pop());
+    return urlToList(pathname).map(itemPath => getMenuMatchKeys(this.flatMenuKeys, itemPath).pop());
   };
 
   // conversion Path

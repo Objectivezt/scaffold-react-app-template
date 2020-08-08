@@ -112,6 +112,13 @@ module.exports = {
     'no-useless-escape': 'off',
     'no-console': 'off',
     'import/no-dynamic-require': 'off',
+    '@typescript-eslint/dot-notation': 0,
+    '@typescript-eslint/no-implied-eval': 0,
+    '@typescript-eslint/no-throw-literal': 0,
+    'import/no-extraneous-dependencies': 0,
+    'react/jsx-props-no-spreading': 0,
+    'arrow-parens': 0,
+    'react/static-property-placement': 0,
   },
   parser: 'babel-eslint',
   parserOptions: {

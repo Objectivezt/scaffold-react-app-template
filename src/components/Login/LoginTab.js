@@ -22,6 +22,7 @@ export default class LoginTab extends Component {
     this.uniqueId = generateId('login-tab-');
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillMount() {
     if (this.context.tabUtil) {
       this.context.tabUtil.addTab(this.uniqueId);

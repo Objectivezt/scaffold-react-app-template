@@ -29,11 +29,14 @@ class Login extends Component {
     onSubmit: () => {},
   };
 
-  state = {
-    type: this.props.defaultActiveKey,
-    tabs: [],
-    active: {},
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: this.props.defaultActiveKey,
+      tabs: [],
+      active: {},
+    };
+  }
 
   getChildContext() {
     const { tabs } = this.state;

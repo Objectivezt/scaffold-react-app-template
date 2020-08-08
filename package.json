@@ -10,7 +10,7 @@
     "test": "jest",
     "lint": "eslint --ext .js ./src ",
     "dev": "node ./node_modules/@scaffold/cli/bin/dev.js",
-    "pre-commit": "npm run test && npm run lint"
+    "pre-commit": "npm run test"
   },
   "browerslist": [
     "not ie < 9",
@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/Objectivezt/dva-react-webpack-boilerplate#readme",
   "dependencies": {
-    "@scaffold/cli": "0.2.1"
+    "@scaffold/cli": "0.3.2",
+    "react-router-dom": "5.1.2"
   }
 }

@@ -2,15 +2,7 @@ import React from 'react';
 import { Spin } from 'antd';
 import PropTypes from 'prop-types';
 
-export default class BlankLayout extends React.Component {
-  static propTypes = {
-    history: PropTypes.object,
-  };
-
-  static defaultProps = {
-    history: {},
-  };
-
+class BlankLayout extends React.Component {
   componentDidMount() {
     this.props.history.push({
       pathname: '/auth',
@@ -33,3 +25,13 @@ export default class BlankLayout extends React.Component {
     );
   }
 }
+
+BlankLayout.defaultProps = {
+  history: {},
+};
+
+BlankLayout.propTypes = {
+  history: PropTypes.object,
+};
+
+export default BlankLayout;

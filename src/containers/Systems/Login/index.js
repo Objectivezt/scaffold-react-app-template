@@ -1,5 +1,4 @@
-/* eslint-disable func-names */
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Login from '@components/Login';
 import { JSEncrypt } from 'jsencrypt';
 import { Row, Col, Icon } from 'antd';
@@ -16,9 +15,12 @@ const publicKeyFooter = '-----END PUBLIC KEY-----';
   logining: loading.effects['loginModel/login'],
 }))
 export default class LoginPage extends Component {
-  state = {
-    type: 'account',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: 'account',
+    };
+  }
 
   componentDidMount() {
     // this.getPublicKey();
@@ -59,12 +61,14 @@ export default class LoginPage extends Component {
   };
 
   renderLoginFooter = () => {
-    const forgetPwd = function() {};
-    const changePwd = function() {};
-    const getHelp = function() {};
-    const forgetAccount = function() {};
+    const forgetPwd = () => {
+      // TODO
+    };
+    const changePwd = () => {};
+    const getHelp = () => {};
+    const forgetAccount = () => {};
     return (
-      <Fragment>
+      <>
         <Row>
           <Col span={12}>
             <span
@@ -103,7 +107,7 @@ export default class LoginPage extends Component {
             </span>
           </Col>
         </Row>
-      </Fragment>
+      </>
     );
   };
 
@@ -179,9 +183,9 @@ export default class LoginPage extends Component {
             ) : null}
             {this.renderLoginFooter()}
           </Tab>
-          <Fragment>
+          <>
             <Submit loading={logining}>登录</Submit>
-          </Fragment>
+          </>
         </Login>
       </div>
     );

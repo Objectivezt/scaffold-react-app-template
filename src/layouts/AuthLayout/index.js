@@ -15,7 +15,6 @@ import SliderMenu from './SliderMenu';
 // import GlobalFooter from './GlobalFooter';
 import styles from './index.module.less';
 
-const { Fragment } = React;
 const { Content } = Layout;
 const redirectData = [];
 const tempMenuArr = baseRouterUrl;
@@ -151,7 +150,7 @@ class AuthLayout extends React.PureComponent {
             {isMultiPage ? (
               <TabLayout {...tasParams} />
             ) : (
-              <Fragment>
+              <>
                 <Breadcrumb className={styles.breadcrumb}>{breadcrumbItems}</Breadcrumb>
                 <Switch>
                   {redirectData.map(item => (
@@ -170,7 +169,7 @@ class AuthLayout extends React.PureComponent {
                   <Redirect exact from="/auth" to="/auth/ts/page" />
                   {/* <Route render={NotFound} /> */}
                 </Switch>
-              </Fragment>
+              </>
             )}
           </Content>
           {/* <GlobalFooter links={[]} copyright={null} /> */}

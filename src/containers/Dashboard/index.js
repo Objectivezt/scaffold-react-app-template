@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 
-class index extends PureComponent {
+class Dashboard extends PureComponent {
   render() {
     return <div>DashBoard</div>;
   }
 }
 
-export default index;
+export default Dashboard;

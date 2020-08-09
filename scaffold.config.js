@@ -1,29 +1,55 @@
+const path = require('path');
+const theme = require('./src/common/theme');
+
+const proxyObj = {
+  proxyObjectiveztNetBook: {
+    target: 'http://objectivezt.com/',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/': ''
+    }
+  }
+};
+
+// 代理 URL
+const proxyUrl = proxyObj.proxyObjectiveztNetBook;
+
+// 当前位置转化
+const aliasFactoryFn = (aliasObj, relPath = path, dirname = __dirname) => {
+  const keyArr = Object.keys(aliasObj);
+  const tempAliasConfig = { ...aliasObj };
+  for (let i = 0; i < keyArr.length; i += 1) {
+    const item = keyArr[i];
+    tempAliasConfig[item] = relPath.resolve(dirname, aliasObj[item]);
+  }
+  return tempAliasConfig;
+};
+
+// 默认配置
+const aliasConfigData = {
+  '@': 'src',
+  '@assets': 'src/assets/',
+  '@common': 'src/common/',
+  '@components': 'src/components/',
+  '@containers': 'src/containers/',
+  '@layouts': 'src/layouts/',
+  '@models': 'src/models/',
+  '@services': 'src/services/',
+  '@styles': 'src/styles/',
+  '@utils': 'src/utils/',
+  '@setting': 'src/setting/'
+};
+
 module.exports = {
-  theme: {
-    'border-radius-base': '0px',
-    'breadcrumb-font-size': '12px',
-    'card-actions-background': '#f5f8fa',
-    'card-head-background': 'rgba(255,255,255,1)',
-    'card-head-color': '#000',
-    'card-head-padding': '8px',
-    'card-inner-head-padding': '16px',
-    'card-padding-base': '16px',
-    'card-radius': '4px',
-    'form-item-margin-bottom': '8px',
-    'icon-url': './iconfont-3.x',
-    'layout-body-background': '#EDF1F6',
-    'layout-header-height': '40px',
-    'layout-trigger-color': '#fff',
-    'menu-bg': '#fff',
-    'menu-collapsed-width': '48px',
-    'pagination-item-size': '24px',
-    'primary-color': '#1890ff',
-    'table-border-radius-base': '4px',
-    'table-header-bg': 'rgba(245,245,245,1)',
-    'table-header-bg-sm': 'rgba(245,245,245,1)',
-    'table-select-row-bg': '#ffc4c4',
-    'tabs-bar-margin': '0 10px 6px 10px',
-    'tabs-card-height': '28px',
-    'tabs-title-font-size': '14px',
+  theme,
+  proxy: {
+    '/api': proxyUrl
   },
+  resolve: {
+    alias: aliasFactoryFn(aliasConfigData, path, __dirname),
+    extensions: ['.js', 'json', '.jsx', 'ts', 'tsx'],
+    modules: ['node_modules', 'src']
+  },
+  aliasFactory: aliasFactoryFn,
+  aliasConfig: aliasConfigData
 };

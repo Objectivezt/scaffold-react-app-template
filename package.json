@@ -1,6 +1,6 @@
 {
   "name": "@scaffold/react-app-template",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "description": "",
   "engines": {
     "node": ">=8"

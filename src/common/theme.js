@@ -23,5 +23,5 @@ module.exports = {
   'table-select-row-bg': '#ffc4c4',
   'tabs-bar-margin': '0 10px 6px 10px',
   'tabs-card-height': '28px',
-  'tabs-title-font-size': '14px',
+  'tabs-title-font-size': '14px'
 };

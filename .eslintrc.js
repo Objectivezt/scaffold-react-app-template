@@ -6,7 +6,17 @@ module.exports = {
     'prettier/react',
     'prettier/@typescript-eslint',
   ].map(key => require.resolve(`eslint-config-${key}`)),
-  plugins: ['@typescript-eslint', 'eslint-comments', 'jest', 'unicorn', 'react-hooks', 'react'],
+  plugins: [
+    '@typescript-eslint',
+    'eslint-comments',
+    'jest',
+    'unicorn',
+    'react-hooks',
+    'react',
+    'jsx-a11y',
+    'import',
+    'prettier',
+  ],
   env: {
     browser: true,
     node: true,
@@ -14,6 +24,18 @@ module.exports = {
     mocha: true,
     jest: true,
     jasmine: true,
+  },
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+      legacyDecorators: true,
+    },
+  },
+  settings: {
+    // support import modules from TypeScript files in JavaScript files
+    'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } },
+    polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
   },
   rules: {
     // ===================== use same as fabric config ====================================
@@ -65,15 +87,19 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'linebreak-style': 0,
+
     // Too restrictive, writing ugly code to defend against a very unlikely scenario: https://eslint.org/docs/rules/no-prototype-builtins
     'no-prototype-builtins': 'off',
     'import/prefer-default-export': 'off',
     'import/no-default-export': [0, 'camel-case'],
+
     // Too restrictive: https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': 'off',
+
     // Use function hoisting to improve code readability
     'no-use-before-define': ['error', { functions: false, classes: true, variables: true }],
+
     // Makes no sense to allow type inferrence for expression parameters, but require typing the response
     '@typescript-eslint/explicit-function-return-type': [
       'off',
@@ -84,13 +110,13 @@ module.exports = {
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
     '@typescript-eslint/no-var-requires': 0,
+
     // Common abbreviations are known and readable
     'unicorn/prevent-abbreviations': 'off',
     '@typescript-eslint/explicit-member-accessibility': 0,
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/no-non-null-assertion': 0,
     '@typescript-eslint/no-use-before-define': 0,
-
     'import/no-cycle': 0,
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
 
@@ -109,27 +135,26 @@ module.exports = {
     'import/extensions': 0,
 
     // ===================== before default config ====================================
-    'no-useless-escape': 'off',
-    'no-console': 'off',
-    'import/no-dynamic-require': 'off',
     '@typescript-eslint/dot-notation': 0,
     '@typescript-eslint/no-implied-eval': 0,
     '@typescript-eslint/no-throw-literal': 0,
-    'import/no-extraneous-dependencies': 0,
-    'react/jsx-props-no-spreading': 0,
+    'array-callback-return': 0,
     'arrow-parens': 0,
+    'global-require': 0,
+    'import/no-dynamic-require': 0,
+    'import/no-extraneous-dependencies': 0,
+    'no-else-return': 0,
+    'no-extra-boolean-cast': 0,
+    'no-useless-escape': 0,
+    'no-useless-escape': 0,
+    'prettier/prettier': 2,
+    'react/display-name': 0,
+    'react/display-name': 0,
+    'react/jsx-closing-bracket-location': 0,
+    'react/jsx-fragments': 0,
+    'react/jsx-props-no-spreading': 0,
+    'react/no-deprecated': 0,
+    'react/sort-comp': 0,
     'react/static-property-placement': 0,
-  },
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-      legacyDecorators: true,
-    },
-  },
-  settings: {
-    // support import modules from TypeScript files in JavaScript files
-    'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } },
-    polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
   },
 };

@@ -7,8 +7,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "globalUI/*": ["./src/common/globalUI/*"],
-      "mock/*": ["./mock/*"],
-      "@assets/*": ["./src/assets/*"], // alias  '@xxxx'
+      "@assets/*": ["./src/assets/*"],
       "@common/*": ["./src/common/*"],
       "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/containers/*"],
@@ -16,8 +15,7 @@
       "@models/*": ["./src/models/*"],
       "@services/*": ["./src/services/*"],
       "@styles/*": ["./src/styles/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@setting/*": ["./src/setting/*"]
+      "@utils/*": ["./src/utils/*"]
     }
   }
 }

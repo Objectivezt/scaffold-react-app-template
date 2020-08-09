@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 // import Ellipsis from '@components/Ellipsis';
-import { globalColProps } from '@common/config'
-import { Divider, Icon, Modal, Select, Tooltip, message, Menu, Col, Form } from 'antd'
+import { globalColProps } from '@common/config';
+import { Divider, Icon, Modal, Select, Tooltip, message, Menu, Col, Form } from 'antd';
 
-const { Option } = Select
-const FormItem = Form.Item
-const { Item: MenuItem } = Menu
+const { Option } = Select;
+const FormItem = Form.Item;
+const { Item: MenuItem } = Menu;
 
 /**
  * @description 表单问号提示
@@ -15,11 +15,11 @@ export function questionTooltip(text) {
   return (
     <>
       &nbsp; &nbsp;
-      <Tooltip placement='right' title={text}>
-        <Icon type='question-circle-o' style={{ color: 'red' }} />
+      <Tooltip placement="right" title={text}>
+        <Icon type="question-circle-o" style={{ color: 'red' }} />
       </Tooltip>
     </>
-  )
+  );
 }
 
 /**
@@ -31,7 +31,7 @@ export function staticModal(title, text) {
   Modal.info({
     title,
     content: text
-  })
+  });
 }
 
 /**
@@ -39,7 +39,7 @@ export function staticModal(title, text) {
  * @param {String} msg
  */
 export function staticMessage(msg) {
-  message.info(msg, 5000)
+  message.info(msg, 5000);
 }
 
 /**
@@ -52,7 +52,7 @@ export function CreateOption(value, name) {
     <Option value={value} title={name} key={value}>
       {name}
     </Option>
-  )
+  );
 }
 
 /**
@@ -62,7 +62,7 @@ export function CreateOption(value, name) {
 export function CreateDivider(text) {
   return (
     <Divider
-      orientation='left'
+      orientation="left"
       style={{
         fontSize: '16px',
         fontWeight: 700,
@@ -70,7 +70,7 @@ export function CreateDivider(text) {
       }}>
       {text}
     </Divider>
-  )
+  );
 }
 
 /**
@@ -129,7 +129,7 @@ export function CreateMenuItem(name, id, iconType) {
       <Icon type={iconType} />
       {name}
     </MenuItem>
-  )
+  );
 }
 
 /**
@@ -141,12 +141,12 @@ export function CreateMenuItem(name, id, iconType) {
  * @param {ReactNode} components
  */
 export function createFilterComponents(form, label, decoratorId, decoratorOptions, components) {
-  const { getFieldDecorator } = form
+  const { getFieldDecorator } = form;
   return (
     <Col {...globalColProps} key={decoratorId}>
       <FormItem labelCol={{ span: 10 }} wrapperCol={{ span: 14 }} label={label}>
         {getFieldDecorator(decoratorId, decoratorOptions)(components)}
       </FormItem>
     </Col>
-  )
+  );
 }

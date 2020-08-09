@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 class BlankLayout extends React.Component {
   componentDidMount() {
     this.props.history.push({
-      pathname: '/auth',
+      pathname: '/auth'
     });
   }
 
@@ -17,9 +17,8 @@ class BlankLayout extends React.Component {
           height: '100%',
           margin: 'auto',
           paddingTop: 50,
-          textAlign: 'center',
-        }}
-      >
+          textAlign: 'center'
+        }}>
         <Spin size="large" />
       </div>
     );
@@ -27,11 +26,11 @@ class BlankLayout extends React.Component {
 }
 
 BlankLayout.defaultProps = {
-  history: {},
+  history: {}
 };
 
 BlankLayout.propTypes = {
-  history: PropTypes.object,
+  history: PropTypes.object
 };
 
 export default BlankLayout;

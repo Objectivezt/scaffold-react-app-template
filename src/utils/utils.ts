@@ -24,10 +24,7 @@ export function formatterMenu(data: any[], parentPath = '/') {
       path
     };
     if (item.children) {
-      result.children = formatterMenu(
-        item.children,
-        `${parentPath}${item.path}/`
-      );
+      result.children = formatterMenu(item.children, `${parentPath}${item.path}/`);
     }
     return result;
   });

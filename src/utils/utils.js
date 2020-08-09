@@ -6,8 +6,9 @@
 export function sum(a, b) {
   return a + b;
 }
+
 export default {
-  sum,
+  sum
 };
 
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/g;
@@ -18,6 +19,7 @@ export function isUrl(path) {
 
 function getRelation(str1, str2) {
   if (str1 === str2) {
+    // eslint-disable-next-line no-console
     console.warn('Two path are equal!');
   }
   const arr1 = str1.split('/');
@@ -39,7 +41,7 @@ export function formatterMenu(data, parentPath = '/') {
     }
     const result = {
       ...item,
-      path,
+      path
     };
     if (item.children) {
       result.children = formatterMenu(item.children, `${parentPath}${item.path}/`);
@@ -84,7 +86,7 @@ function getRenderArr(routes) {
  */
 export function getRoutes(path, routerData) {
   let routes = Object.keys(routerData).filter(
-    routePath => routePath.indexOf(path) === 0 && routePath !== path,
+    routePath => routePath.indexOf(path) === 0 && routePath !== path
   );
   // Replace path to '' eg. path='user' /user/name => name
   routes = routes.map(item => item.replace(path, ''));
@@ -97,7 +99,7 @@ export function getRoutes(path, routerData) {
       exact,
       ...routerData[`${path}${item}`],
       key: `${path}${item}`,
-      path: `${path}${item}`,
+      path: `${path}${item}`
     };
   });
   return renderRoutes;

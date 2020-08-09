@@ -7,4 +7,4 @@ export default {
   maskClosable: false, // 点击遮罩层不关闭浮层
   keyboard: true, // 支持键盘esc退出这招
   centered: true // 竖直居中
-}
+};

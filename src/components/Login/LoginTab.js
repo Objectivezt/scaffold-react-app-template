@@ -14,7 +14,7 @@ const generateId = (() => {
 
 export default class LoginTab extends Component {
   static contextTypes = {
-    tabUtil: PropTypes.object,
+    tabUtil: PropTypes.object
   };
 
   constructor(props) {

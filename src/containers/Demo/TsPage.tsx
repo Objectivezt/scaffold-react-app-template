@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from 'antd';
 
-const { Component } = React;
+const { PureComponent, Fragment } = React;
 
 interface Props {
   name: string;
@@ -9,31 +9,29 @@ interface Props {
   lastName?: string;
 }
 interface State {
-  count: number
+  count: number;
 }
 
-export default class Hi extends Component<Props, State> {
+export default class Hi extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
+      count: 0
     };
   }
 
   sum = () => {
     const { count } = this.state;
-    this.setState({ count: count + 1 })
+    this.setState({ count: count + 1 });
     return true;
-  }
+  };
 
   render() {
     return (
-      <>
+      <Fragment>
         <p>你点击了 {this.state.count} 1111次</p>
-        <Button onClick={() => this.sum()}>
-          Hi {this.props.name}
-        </Button>
-      </>
-    )
+        <Button onClick={this.sum}> {`Hi ${this.props.name}`}</Button>
+      </Fragment>
+    );
   }
 }

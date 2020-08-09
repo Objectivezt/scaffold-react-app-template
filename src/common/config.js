@@ -22,59 +22,59 @@ export { default as globalRangePickerProps } from './globalUIProps/RangePicker.c
 export const globalFormItemLayout = {
   labelCol: {
     sm: {
-      span: 8,
+      span: 8
     },
     md: {
-      span: 8,
+      span: 8
     },
     lg: {
-      span: 6,
+      span: 6
     },
     xl: {
-      span: 6,
+      span: 6
     },
     xxl: {
-      span: 6,
-    },
+      span: 6
+    }
   },
   wrapperCol: {
     sm: {
-      span: 16,
+      span: 16
     },
     md: {
-      span: 16,
+      span: 16
     },
     lg: {
-      span: 18,
+      span: 18
     },
     xl: {
-      span: 18,
+      span: 18
     },
     xxl: {
-      span: 18,
-    },
-  },
+      span: 18
+    }
+  }
 };
 
 export const queryLayout = {
   'screen-xs': {
-    maxWidth: 575,
+    maxWidth: 575
   },
   'screen-sm': {
     minWidth: 576,
-    maxWidth: 767,
+    maxWidth: 767
   },
   'screen-md': {
     minWidth: 768,
-    maxWidth: 991,
+    maxWidth: 991
   },
   'screen-lg': {
     minWidth: 992,
-    maxWidth: 1199,
+    maxWidth: 1199
   },
   'screen-xl': {
-    minWidth: 1200,
-  },
+    minWidth: 1200
+  }
 };
 
 const isLocalMenu = process.env.NODE_ENV === 'development';

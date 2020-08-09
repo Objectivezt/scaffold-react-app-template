@@ -4,4 +4,4 @@ export default {
   allowClear: true,
   placeholder: '请选择或输入',
   style: { width: '85%' }
-}
+};

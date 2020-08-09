@@ -18,7 +18,7 @@ export default class TabLayout extends React.Component {
     whiteRouter: PropTypes.array,
     noPermission: PropTypes.object,
     dispatch: PropTypes.func,
-    match: PropTypes.object,
+    match: PropTypes.object
   };
 
   static defaultProps = {
@@ -30,7 +30,7 @@ export default class TabLayout extends React.Component {
     whiteRouter: [],
     noPermission: {},
     dispatch: () => {},
-    match: {},
+    match: {}
   };
 
   constructor(props) {
@@ -42,13 +42,13 @@ export default class TabLayout extends React.Component {
         {
           name: '关闭当前',
           iconType: 'close',
-          key: 'close',
+          key: 'close'
         },
         {
           name: '关闭其他',
           iconType: 'close-circle',
-          key: 'closeOther',
-        },
+          key: 'closeOther'
+        }
         // {
         //   name: '刷新页面',
         //   iconType: 'reload',
@@ -59,7 +59,7 @@ export default class TabLayout extends React.Component {
         //   iconType: 'star',
         //   key: 'star'
         // }
-      ],
+      ]
     };
   }
 
@@ -107,7 +107,7 @@ export default class TabLayout extends React.Component {
 
     if (isExist) {
       this.setState({
-        activeKey,
+        activeKey
       });
     } else {
       panes.push({ name, key: activeKey, component });
@@ -118,8 +118,8 @@ export default class TabLayout extends React.Component {
   onChange = activeKey => {
     this.props.dispatch(
       routerRedux.push({
-        pathname: activeKey,
-      }),
+        pathname: activeKey
+      })
     );
   };
 
@@ -180,8 +180,7 @@ export default class TabLayout extends React.Component {
       <Dropdown overlay={TabMenu(pathname)}>
         <div
           className="ant-dropdown-link"
-          style={{ width: '100%', height: '26px', textOverflow: 'ellipsis', overflow: 'hidden' }}
-        >
+          style={{ width: '100%', height: '26px', textOverflow: 'ellipsis', overflow: 'hidden' }}>
           {name}
         </div>
       </Dropdown>
@@ -194,8 +193,7 @@ export default class TabLayout extends React.Component {
         style={{ marginTop: 20 }}
         onChange={this.onChange}
         onEdit={this.onEdit}
-        type="editable-card"
-      >
+        type="editable-card">
         {panes.map(({ name, key, component: Pane }) => (
           <TabPane tab={TabMenuDropDown(name, key)} key={key} closable>
             <Pane

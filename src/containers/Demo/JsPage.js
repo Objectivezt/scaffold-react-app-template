@@ -11,7 +11,7 @@ export default class IndexPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      temp: 123,
+      temp: 123
     };
   }
 

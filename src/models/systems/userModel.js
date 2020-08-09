@@ -8,7 +8,7 @@ export default {
     menuData: [],
     loadingLayoutMenu: true,
     username: '',
-    userId: '',
+    userId: ''
   },
   effects: {
     *getMenuData(_, { call, put }) {
@@ -17,8 +17,8 @@ export default {
           type: 'saveMenuData',
           payloadMenuData: {
             menuData: localMenuDataArr,
-            loadingLayoutMenu: false,
-          },
+            loadingLayoutMenu: false
+          }
         });
       } else {
         const res = yield call(queryMenus);
@@ -33,8 +33,8 @@ export default {
               type: 'saveMenuData',
               payloadMenuData: {
                 menuData: data || [],
-                loadingLayoutMenu: tempLoadingLayoutMenu,
-              },
+                loadingLayoutMenu: tempLoadingLayoutMenu
+              }
             });
           } else {
             message.info(msg);
@@ -52,29 +52,29 @@ export default {
             type: 'saveCurrentUser',
             payloadCurrentUser: {
               username: data.username,
-              userId: data.userId,
-            },
+              userId: data.userId
+            }
           });
         } else {
           message.info(msg);
         }
       }
-    },
+    }
   },
   reducers: {
     saveMenuData(state, { payloadMenuData }) {
       return {
         ...state,
         menuData: payloadMenuData.menuData,
-        loadingLayoutMenu: payloadMenuData.loadingLayoutMenu,
+        loadingLayoutMenu: payloadMenuData.loadingLayoutMenu
       };
     },
     saveCurrentUser(state, { payloadCurrentUser }) {
       return {
         ...state,
         username: payloadCurrentUser.username,
-        userId: payloadCurrentUser.userId,
+        userId: payloadCurrentUser.userId
       };
-    },
-  },
+    }
+  }
 };

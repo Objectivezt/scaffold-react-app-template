@@ -4,4 +4,4 @@ export default {
   lg: 8,
   xl: 8,
   xll: 6
-}
+};

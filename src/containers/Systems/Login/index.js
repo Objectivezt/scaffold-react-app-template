@@ -12,13 +12,13 @@ const publicKeyFooter = '-----END PUBLIC KEY-----';
 
 @connect(({ loginModel, loading }) => ({
   loginModel,
-  logining: loading.effects['loginModel/login'],
+  logining: loading.effects['loginModel/login']
 }))
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      type: 'account',
+      type: 'account'
     };
   }
 
@@ -32,7 +32,7 @@ export default class LoginPage extends Component {
 
   getPublicKey = () => {
     this.props.dispatch({
-      type: 'loginModel/getPublicKey',
+      type: 'loginModel/getPublicKey'
     });
   };
 
@@ -43,8 +43,8 @@ export default class LoginPage extends Component {
         type: 'login/login',
         payload: {
           ...values,
-          type,
-        },
+          type
+        }
       });
     }
   };
@@ -55,8 +55,8 @@ export default class LoginPage extends Component {
     this.props.dispatch({
       type: 'loginModel/changeCaptcha',
       payloadRequestId: {
-        requestId,
-      },
+        requestId
+      }
     });
   };
 
@@ -73,8 +73,7 @@ export default class LoginPage extends Component {
           <Col span={12}>
             <span
               className={`${styles.black} ${styles.left} ${styles.point}`}
-              onClick={e => forgetPwd(e)}
-            >
+              onClick={e => forgetPwd(e)}>
               <Icon type="key" className={styles.iconRight} />
               忘记密码
             </span>
@@ -82,8 +81,7 @@ export default class LoginPage extends Component {
           <Col span={12}>
             <span
               className={`${styles.black} ${styles.left} ${styles.point}`}
-              onClick={e => changePwd(e)}
-            >
+              onClick={e => changePwd(e)}>
               <Icon type="tool" className={styles.iconRight} />
               修改密码
             </span>
@@ -91,8 +89,7 @@ export default class LoginPage extends Component {
           <Col span={12}>
             <span
               className={`${styles.black} ${styles.left} ${styles.point}`}
-              onClick={e => getHelp(e)}
-            >
+              onClick={e => getHelp(e)}>
               <Icon type="user" className={styles.iconRight} />
               忘记账号
             </span>
@@ -100,8 +97,7 @@ export default class LoginPage extends Component {
           <Col span={12}>
             <span
               className={`${styles.black} ${styles.left} ${styles.point}`}
-              onClick={e => forgetAccount(e)}
-            >
+              onClick={e => forgetAccount(e)}>
               <Icon type="hdd" className={styles.iconRight} />
               自助服务
             </span>
@@ -127,7 +123,7 @@ export default class LoginPage extends Component {
       const encryptPwd = encrypt.encrypt(values.password);
       const tempPayload = {
         userName: values.userName ? values.userName.replace(/\s+/g, '') : null,
-        password: encryptPwd,
+        password: encryptPwd
       };
       if (requestId) {
         tempPayload.requestId = requestId;
@@ -137,7 +133,7 @@ export default class LoginPage extends Component {
       }
       dispatch({
         type: 'loginModel/login',
-        payloadLogin: tempPayload,
+        payloadLogin: tempPayload
       });
     }
     return true;
@@ -154,7 +150,7 @@ export default class LoginPage extends Component {
         onClick={() => this.changeCaptcha()}
         style={{
           width: '105px',
-          height: '40px',
+          height: '40px'
         }}
       />
     );
@@ -173,8 +169,8 @@ export default class LoginPage extends Component {
                     rules={[
                       {
                         required: true,
-                        message: '请输入验证码',
-                      },
+                        message: '请输入验证码'
+                      }
                     ]}
                   />
                 </Col>

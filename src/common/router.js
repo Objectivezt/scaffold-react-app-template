@@ -27,7 +27,7 @@ const dynamicWrapper = (app, models, component) => {
       }
       return createElement(component().default, {
         ...props,
-        routerData: routerDataCache,
+        routerData: routerDataCache
       });
     };
   }
@@ -46,60 +46,60 @@ const dynamicWrapper = (app, models, component) => {
         return props =>
           createElement(Component, {
             ...props,
-            routerData: routerDataCache,
+            routerData: routerDataCache
           });
       });
-    },
+    }
   });
 };
 
 export const getRouterData = app => {
   const routerConfig = {
     '/': {
-      component: dynamicWrapper(app, [], () => import('@layouts/BlankLayout')),
+      component: dynamicWrapper(app, [], () => import('@layouts/BlankLayout'))
     },
     '/user': {
       component: dynamicWrapper(app, ['globalModel', 'systems/userModel'], () =>
-        import('@layouts/UserLayout'),
-      ),
+        import('@layouts/UserLayout')
+      )
     },
     '/user/login': {
       component: dynamicWrapper(app, ['systems/loginModel'], () =>
-        import('@containers/Systems/Login'),
-      ),
+        import('@containers/Systems/Login')
+      )
     },
 
     '/auth': {
       component: dynamicWrapper(app, ['globalModel', 'systems/userModel'], () =>
-        import('@layouts/AuthLayout'),
-      ),
+        import('@layouts/AuthLayout')
+      )
     },
     '/auth/app': {
       component: dynamicWrapper(app, [], () => import('@containers/Dashboard')),
-      name: '系统主页',
+      name: '系统主页'
     },
 
     '/auth/js/page': {
       component: dynamicWrapper(app, [], () => import('@containers/Demo/JsPage')),
-      name: 'JSPage',
+      name: 'JSPage'
     },
     '/auth/ts/page': {
       component: dynamicWrapper(app, [], () => import('@containers/Demo/TsPage')),
-      name: 'TSPage',
+      name: 'TSPage'
     },
     // 错误页
     '/auth/exception/403': {
       component: dynamicWrapper(app, [], () => import('@containers/Exception/403')),
-      name: '403',
+      name: '403'
     },
     '/auth/exception/404': {
       component: dynamicWrapper(app, [], () => import('@containers/Exception/404')),
-      name: '404',
+      name: '404'
     },
     '/auth/exception/500': {
       component: dynamicWrapper(app, [], () => import('@containers/Exception/500')),
-      name: '500',
-    },
+      name: '500'
+    }
   };
 
   const getFlatMenuData = menus => {
@@ -123,7 +123,7 @@ export const getRouterData = app => {
       }
       const result = {
         ...item,
-        path,
+        path
       };
       if (item.children) {
         result.children = this.formatter(item.children, `${parentPath}${item.path}/`);
@@ -145,7 +145,7 @@ export const getRouterData = app => {
     let router = routerConfig[path];
     router = {
       ...router,
-      name: router.name || menuItem.name,
+      name: router.name || menuItem.name
     };
     routerData[path] = router;
   });

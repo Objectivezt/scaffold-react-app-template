@@ -1,10 +1,6 @@
 import { message } from 'antd';
 import { routerRedux } from 'dva/router';
-import {
-  login,
-  queryPublicKey,
-  queryCaptchaImage
-} from '@services/systems/loginService';
+import { login, queryPublicKey, queryCaptchaImage } from '@services/systems/loginService';
 
 export default {
   namespace: 'loginModel',

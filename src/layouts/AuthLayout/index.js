@@ -21,7 +21,7 @@ const tempMenuArr = baseRouterUrl;
 @connect(({ globalModel, userModel }) => ({
   collapsed: globalModel.collapsed,
   globalModel,
-  userModel,
+  userModel
 }))
 class AuthLayout extends React.PureComponent {
   componentDidMount() {
@@ -38,7 +38,7 @@ class AuthLayout extends React.PureComponent {
       if (item.children[0] && item.children[0].path) {
         redirectData.push({
           from: `${item.path}`,
-          to: `${item.children[0].path}`,
+          to: `${item.children[0].path}`
         });
         item.children.forEach(children => {
           this.getRedirect(children);
@@ -50,7 +50,7 @@ class AuthLayout extends React.PureComponent {
   getMenuData = () => {
     this.props
       .dispatch({
-        type: 'userModel/getMenuData',
+        type: 'userModel/getMenuData'
       })
       .then(() => {
         const { menuData } = this.props.userModel;
@@ -74,14 +74,14 @@ class AuthLayout extends React.PureComponent {
   handleMenuCollapse = collapsed => {
     this.props.dispatch({
       type: 'globalModel/changeLayoutCollapsed',
-      payloadCollapsed: collapsed,
+      payloadCollapsed: collapsed
     });
   };
 
   handleMultiPage = isMultiPage => {
     this.props.dispatch({
       type: 'globalModel/changeMultiPage',
-      payloadMultiPage: isMultiPage,
+      payloadMultiPage: isMultiPage
     });
   };
 
@@ -102,7 +102,7 @@ class AuthLayout extends React.PureComponent {
       userModel,
       globalModel,
       collapsed,
-      history,
+      history
     } = this.props;
     const { isMultiPage } = globalModel;
     const { loadingLayoutMenu = true, menuData = [] } = userModel;
@@ -114,7 +114,7 @@ class AuthLayout extends React.PureComponent {
       match,
       history,
       noPermission: routerData['/auth/exception/403'],
-      whiteRouter: tempMenuArr,
+      whiteRouter: tempMenuArr
     };
     const pathSnippets = location.pathname.split('/').filter(i => i);
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {

@@ -3,12 +3,11 @@ import dva from 'dva';
 import createLoading from 'dva-loading';
 import { createHashHistory as createHistory } from 'history';
 import 'antd/dist/antd.less';
-// import './styles/App.module.css';
 import '@styles/index.module.less';
 
 const App = ({ history }) => {
   const app = dva({
-    history: history || createHistory(),
+    history: history || createHistory()
   });
 
   app.use(createLoading());

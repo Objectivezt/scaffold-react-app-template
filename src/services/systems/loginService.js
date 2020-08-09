@@ -3,7 +3,7 @@ import request from '@utils/request';
 export function login(params) {
   return request('login/goLogin', {
     method: 'POST',
-    body: params,
+    body: params
   });
 }
 

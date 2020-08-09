@@ -30,7 +30,7 @@ export default class SliderMenu extends PureComponent {
     this.flatMenuKeys = this.getFlatMenuKeys(props.menuData);
     this.state = {
       menus: props.menuData,
-      openKeys: this.getDefaultCollapsedSubMenus(props),
+      openKeys: this.getDefaultCollapsedSubMenus(props)
     };
   }
 
@@ -38,7 +38,7 @@ export default class SliderMenu extends PureComponent {
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.setState({
-        openKeys: this.getDefaultCollapsedSubMenus(nextProps),
+        openKeys: this.getDefaultCollapsedSubMenus(nextProps)
       });
     }
   }
@@ -50,7 +50,7 @@ export default class SliderMenu extends PureComponent {
    */
   getDefaultCollapsedSubMenus(props) {
     const {
-      location: { pathname },
+      location: { pathname }
     } = props || this.props;
     return urlToList(pathname)
       .map(item => getMenuMatchKeys(this.flatMenuKeys, item)[0])
@@ -98,8 +98,7 @@ export default class SliderMenu extends PureComponent {
         to={itemPath}
         target={target}
         replace={itemPath === this.props.location.pathname}
-        onClick={click}
-      >
+        onClick={click}>
         {icon}
         <span>{name}</span>
       </Link>
@@ -127,8 +126,7 @@ export default class SliderMenu extends PureComponent {
               )
             }
             className={styles.menuItem}
-            key={item.path}
-          >
+            key={item.path}>
             {childrenItems}
           </SubMenu>
         );
@@ -159,7 +157,7 @@ export default class SliderMenu extends PureComponent {
   // Get the currently selected menu
   getSelectedMenuKeys = () => {
     const {
-      location: { pathname },
+      location: { pathname }
     } = this.props;
     return urlToList(pathname).map(itemPath => getMenuMatchKeys(this.flatMenuKeys, itemPath).pop());
   };
@@ -188,7 +186,7 @@ export default class SliderMenu extends PureComponent {
     const lastOpenKey = openKeys[openKeys.length - 1];
     const moreThanOne = openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1;
     this.setState({
-      openKeys: moreThanOne ? [lastOpenKey] : [...openKeys],
+      openKeys: moreThanOne ? [lastOpenKey] : [...openKeys]
     });
   };
 
@@ -211,8 +209,7 @@ export default class SliderMenu extends PureComponent {
         onCollapse={onCollapse}
         width="178"
         collapsedWidth="48"
-        className={styles.sider}
-      >
+        className={styles.sider}>
         <Menu
           key="Menu"
           mode="inline"
@@ -220,8 +217,7 @@ export default class SliderMenu extends PureComponent {
           onOpenChange={this.handleOpenChange}
           selectedKeys={selectedKeys}
           className={styles.menu}
-          {...menuProps}
-        >
+          {...menuProps}>
           {this.getNavMenuItems(this.state.menus)}
         </Menu>
       </Sider>

@@ -27,7 +27,7 @@ export default class GlobalHeader extends PureComponent {
         //   key: 'changelog',
         //   iconType: 'file-text'
         // }
-      ],
+      ]
     };
   }
 

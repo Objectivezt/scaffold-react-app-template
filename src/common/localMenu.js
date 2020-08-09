@@ -3,7 +3,7 @@ export default [
     path: 'auth/js/page',
     icon: 'home',
     name: 'JSPage',
-    children: [],
+    children: []
   },
   {
     path: 'auth/ts',
@@ -14,8 +14,8 @@ export default [
         path: 'page',
         icon: 'home',
         name: 'TsPage',
-        children: [],
-      },
-    ],
-  },
+        children: []
+      }
+    ]
+  }
 ];

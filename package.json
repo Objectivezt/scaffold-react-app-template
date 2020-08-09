@@ -1,6 +1,6 @@
 {
   "name": "@scaffold/react-app-template",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "",
   "engines": {
     "node": ">=8"
@@ -37,6 +37,6 @@
   },
   "homepage": "https://github.com/Objectivezt/dva-react-webpack-boilerplate#readme",
   "dependencies": {
-    "@scaffold/cli-service": "^0.6.1"
+    "@scaffold/cli-service": "^0.7.0"
   }
 }

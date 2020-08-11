@@ -2,60 +2,71 @@
 
 .container {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: auto;
+  min-height: 100%;
   background: #f0f2f5;
-}
-
-.content {
-  padding: 32px 0;
-  flex: 1;
-}
-
-@media (min-width: @screen-md-min) {
-  .container {
-    background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
-    background-repeat: no-repeat;
-    background-position: center 110px;
-    background-size: 100%;
-  }
+  background-repeat: no-repeat;
+  background-position: center 110px;
+  background-size: 100%;
+  flex-direction: column;
 
   .content {
-    padding: 112px 0 24px 0;
+    padding: 0;
+    flex: 1;
+    -webkit-filter: brightness(1.2);
+    filter: brightness(1.2);
+    background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+    background-size: 100% 100%;
+
+    .top {
+      text-align: center;
+      background: linear-gradient(to right top, rgba(94, 89, 94, 0.8), rgba(171, 160, 171, 0.8));
+      width: 368px;
+      margin: 20px auto;
+      border-radius: 5px;
+      border: 1px solid rgba(94, 89, 94, 1);
+      box-shadow: -4px 7px 14px 5px;
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+      position: relative;
+      top: 5%;
+
+      .header {
+        line-height: 44px;
+        padding-top: 30px;
+        opacity: 1;
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+        position: relative;
+
+        a {
+          text-decoration: none;
+        }
+
+        .logo {
+          height: 100px;
+          width: 300px;
+          vertical-align: top;
+          opacity: 1;
+          -webkit-filter: brightness(1);
+          filter: brightness(1);
+        }
+
+        .title {
+          position: absolute;
+          right: 30px;
+          bottom: -20px;
+        }
+      }
+
+      .desc {
+        font-size: @font-size-base;
+        text-align: center;
+        width: 1000px;
+        margin: 12px auto;
+        color: #efefef;
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+      }
+    }
   }
-}
-
-.top {
-  text-align: center;
-}
-
-.header {
-  height: 44px;
-  line-height: 44px;
-  a {
-    text-decoration: none;
-  }
-}
-
-.logo {
-  height: 44px;
-  vertical-align: top;
-  margin-right: 16px;
-}
-
-.title {
-  font-size: 33px;
-  color: @heading-color;
-  font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  position: relative;
-  top: 2px;
-}
-
-.desc {
-  font-size: @font-size-base;
-  color: @text-color-secondary;
-  margin-top: 12px;
-  margin-bottom: 40px;
 }

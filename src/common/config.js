@@ -85,4 +85,6 @@ export const baseUrl = '/';
 
 export const localMenuData = isLocalMenu;
 
+export const noContextUrl = [];
+
 export { default as localMenuDataArr } from './localMenu';

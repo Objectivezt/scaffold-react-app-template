@@ -1,13 +1,16 @@
 import request from '@utils/request';
 
+// 获取菜单
 export function queryMenus() {
   return request('user/queryCurrentMenus');
 }
 
-export function queryCurrentUser() {
-  return request('user/queryCurrentUser');
+// 获取按钮
+export function queryButtons() {
+  return request('user/queryCurrentButtons');
 }
 
-export function queryUserList() {
-  return request('user/queryUserList');
+// 获取当前用户
+export function queryCurrentUser() {
+  return request('user/queryCurrentUser');
 }

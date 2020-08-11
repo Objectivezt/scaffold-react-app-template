@@ -1,8 +1,7 @@
 import fetch from 'dva/fetch';
 import { notification } from 'antd';
-// import { routerRedux } from 'dva/router';
-import { baseUrl } from '@common/config';
-// import store from '../index'
+import { baseUrl, noContextUrl } from '@common/config';
+import store from '@/root';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -22,16 +21,17 @@ const codeMessage = {
   504: '网关超时。'
 };
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
+  const { status, statusText, url } = response;
+  if (status >= 200 && status < 300) {
     return response;
   }
-  const errorText = codeMessage[response.status] || response.statusText;
+  const errorText = codeMessage[status] || statusText;
   notification.error({
-    message: `请求错误 ${response.status}: ${response.url}`,
+    message: `请求错误 ${status}: ${url}`,
     description: errorText
   });
   const error = new Error(errorText);
-  error.name = response.status;
+  error.name = status;
   error.response = response;
   throw error;
 }
@@ -44,6 +44,7 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
+  let tempBaseUrl = '/';
   const defaultOptions = {
     credentials: 'include',
     headers: {
@@ -52,7 +53,6 @@ export default function request(url, options) {
   };
   const newOptions = { ...defaultOptions, ...options };
   if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
-    // eslint-disable-next-line no-undef
     if (!(newOptions.body instanceof FormData)) {
       newOptions.headers = {
         Accept: 'application/json',
@@ -61,15 +61,27 @@ export default function request(url, options) {
       };
       newOptions.body = JSON.stringify(newOptions.body);
     } else {
-      // newOptions.body is FormData
       newOptions.headers = {
         Accept: 'application/json',
+        'content-Type': 'multipart/form-data',
         ...newOptions.headers
       };
     }
+  } else {
+    newOptions.headers = {
+      ...newOptions.headers
+      // extra
+    };
   }
 
-  return fetch(baseUrl + url, newOptions)
+  // 接口过滤
+  if (noContextUrl.includes(url)) {
+    tempBaseUrl = '/';
+  } else {
+    tempBaseUrl = baseUrl;
+  }
+
+  return fetch(baseUrl + tempBaseUrl, newOptions)
     .then(checkStatus)
     .then(response => {
       if (newOptions.method === 'DELETE' || response.status === 204) {
@@ -77,5 +89,13 @@ export default function request(url, options) {
       }
       return response.json();
     })
-    .catch(e => Promise.reject(e));
+    .catch(e => {
+      const { dispatch } = store;
+      const status = e.name;
+      if (status === 401) {
+        dispatch({
+          type: 'loginModel/goToLoginPage'
+        });
+      }
+    });
 }

@@ -15,6 +15,7 @@ export default {
     forgetAccountUrl: ''
   },
   effects: {
+    // 获取公钥
     *getPublicKey(_, { call, put }) {
       const res = yield call(queryPublicKey);
       if (res) {
@@ -35,6 +36,8 @@ export default {
         }
       }
     },
+
+    // 登录
     *login({ payloadLogin }, { call, put }) {
       const res = yield call(login, payloadLogin);
       if (res) {
@@ -59,6 +62,8 @@ export default {
         }
       }
     },
+
+    // 切换验证码
     *changeCaptchaImage(_, { call, put }) {
       const res = yield call(queryCaptchaImage);
       if (res) {
@@ -75,6 +80,18 @@ export default {
           message.error(msg);
         }
       }
+    },
+
+    // 前往登录页
+    *goToLoginPage(_, { put }) {
+      yield put(routerRedux.push('/user/login'));
+    },
+
+    // 退出登录
+    *logout(_, { put }) {
+      // TODO 调用退出
+      // 调用当前 effects 中的goToLoginPage 方法
+      yield put({ type: 'goToLoginPage' });
     }
   },
   reducers: {

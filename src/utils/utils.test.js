@@ -1,4 +1,4 @@
-import { sum, authRouterPass, isInArray, isUrl } from './utils.js';
+import { sum, authRouterPass, isInArray, isUrl, calcLength } from './utils.js';
 import { greeter } from './utils.ts';
 
 /**
@@ -73,4 +73,13 @@ test('isUrl', () => {
   expect(isUrl('https://china.com')).toBe(true);
   expect(isUrl('china.com')).toBe(false);
   expect(isUrl('china.123.com')).toBe(false);
+});
+
+/**
+ * @desc calcLength
+ */
+test('calcLength', () => {
+  expect(calcLength('篮球')).toBe(6);
+  expect(calcLength('12篮球')).toBe(8);
+  expect(calcLength('')).toBe(0);
 });

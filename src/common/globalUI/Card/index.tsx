@@ -1,17 +1,18 @@
-
 import * as React from 'react';
 import { Card } from 'antd';
 
 interface Props {
-  title?: string,
-  children?: React.ReactNode,
-  extra?: React.ReactNode,
-  height?: number,
-  loading?: boolean,
-  style?: object
+  title?: string;
+  children?: React.ReactNode;
+  extra?: React.ReactNode;
+  height?: number;
+  loading?: boolean;
+  style?: object;
+  bordered: boolean;
+  hoverable: boolean;
 }
 
-export default class GlobalCard extends React.Component<Props>{
+export default class GlobalCard extends React.PureComponent<Props> {
   render() {
     const { title, children, extra, height, loading = false } = this.props;
     const styles = {
@@ -23,15 +24,14 @@ export default class GlobalCard extends React.Component<Props>{
     }
     return (
       <Card
-        type='inner'
-        hoverable={true}
-        bordered={true}
+        type="inner"
+        hoverable
+        bordered
         title={title}
         extra={extra}
         style={styles}
         loading={loading}
-        {...this.props}
-      >
+        {...this.props}>
         {children}
       </Card>
     );

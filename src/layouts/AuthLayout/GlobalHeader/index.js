@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Avatar, Dropdown, Icon, Layout, Menu, Tooltip, Spin } from 'antd';
 import { projectName } from '@common/config';
 import logo from '@assets/logo.svg';
-import { CreateMenuItem } from '@utils/utils.stateless';
+import { createMenuItem } from '@utils/utils.stateless';
 import styles from './index.module.less';
 
 const { Item: MenuItem } = Menu;
@@ -41,7 +41,7 @@ export default class GlobalHeader extends PureComponent {
     const { tabMenuData } = this.state;
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
-        {tabMenuData.map(({ name, key, iconType }) => CreateMenuItem(name, key, iconType))}
+        {tabMenuData.map(({ name, key, iconType }) => createMenuItem(name, key, iconType))}
         <MenuItem key="logout">
           <Icon type="logout" />
           退出登录

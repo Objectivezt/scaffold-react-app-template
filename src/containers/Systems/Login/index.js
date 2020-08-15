@@ -12,7 +12,7 @@ const publicKeyFooter = '-----END PUBLIC KEY-----';
 
 @connect(({ loginModel, loading }) => ({
   loginModel,
-  logining: loading.effects['loginModel/login']
+  logging: loading.effects['loginModel/login']
 }))
 export default class LoginPage extends Component {
   constructor(props) {
@@ -20,10 +20,6 @@ export default class LoginPage extends Component {
     this.state = {
       type: 'account'
     };
-  }
-
-  componentDidMount() {
-    // this.getPublicKey();
   }
 
   onTabChange = type => {
@@ -111,37 +107,48 @@ export default class LoginPage extends Component {
     this.setState({ type });
   };
 
+  /**
+   * @description 登录提交
+   * @param {Null|Object} err 异常捕获
+   * @param {Object} values 传入参数
+   * @returns {Boolean}
+   */
   handleSubmit = (err, values) => {
     const { loginModel, dispatch } = this.props;
     const { requestId, loginKey, validCode = '' } = loginModel;
+    // 异常捕获
     if (err) {
       return false;
     }
-    if (this.state.type === 'account') {
-      const encrypt = new JSEncrypt();
-      encrypt.setPublicKey(publicKeyHead + loginKey + publicKeyFooter);
-      const encryptPwd = encrypt.encrypt(values.password);
-      const tempPayload = {
-        userName: values.userName ? values.userName.replace(/\s+/g, '') : null,
-        password: encryptPwd
-      };
-      if (requestId) {
-        tempPayload.requestId = requestId;
-      }
-      if (validCode) {
-        tempPayload.validCode = values.captchaCode;
-      }
-      dispatch({
-        type: 'loginModel/login',
-        payloadLogin: tempPayload
-      });
+    // 公钥加密构造
+    const encrypt = new JSEncrypt();
+    encrypt.setPublicKey(publicKeyHead + loginKey + publicKeyFooter);
+    const encryptPwd = encrypt.encrypt(values.password);
+    // 构造传参
+    const tempPayload = {
+      // userName 处理空格
+      userName: values.userName ? values.userName.replace(/\s+/g, '') : null,
+      password: encryptPwd
+    };
+    // 多次异常登录存在产生 requestId
+    if (requestId) {
+      tempPayload.requestId = requestId;
     }
+    // 存在验证码状态下赋值
+    if (validCode) {
+      tempPayload.validCode = values.captchaCode;
+    }
+    // 登录 action
+    dispatch({
+      type: 'loginModel/login',
+      payloadLogin: tempPayload
+    });
     return true;
   };
 
   render() {
     const { type } = this.state;
-    const { logining, loginModel } = this.props;
+    const { logging, loginModel } = this.props;
     const { validCode = '' } = loginModel;
     const changeCap = (
       <img
@@ -180,7 +187,7 @@ export default class LoginPage extends Component {
             {this.renderLoginFooter()}
           </Tab>
           <>
-            <Submit loading={logining}>登录</Submit>
+            <Submit loading={logging}>登录</Submit>
           </>
         </Login>
       </div>

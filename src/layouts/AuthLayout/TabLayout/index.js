@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tabs, message, Menu, Dropdown } from 'antd';
 import { isInArray } from '@utils/utils';
 import { routerRedux } from 'dva/router';
-import { CreateMenuItem } from '@utils/utils.stateless';
+import { createMenuItem } from '@utils/utils.stateless';
 import styles from './index.module.less';
 
 const { TabPane } = Tabs;
@@ -172,7 +172,7 @@ export default class TabLayout extends React.Component {
     const { panes, activeKey, tabMenuData } = this.state;
     const TabMenu = pathname => (
       <Menu className={styles.menu} onClick={item => this.onMenuClick(item, pathname)}>
-        {tabMenuData.map(({ name, iconType, key }) => CreateMenuItem(name, key, iconType))}
+        {tabMenuData.map(({ name, iconType, key }) => createMenuItem(name, key, iconType))}
       </Menu>
     );
 

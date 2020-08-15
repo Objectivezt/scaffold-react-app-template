@@ -259,12 +259,20 @@ export const loadFile = fileUrl => {
     }
   });
 };
+/**
+ * @description
+ * @param {*} urls
+ * @returns
+ */
+export const loadFiles = urls => Promise.all(urls.map(url => loadFile(url)));
 
-export function loadFiles(urls) {
-  return Promise.all(urls.map(url => loadFile(url)));
-}
-
-export function getPlainNode(nodeList, parentPath = '') {
+/**
+ * @description
+ * @param { Array } nodeList
+ * @param { String } parentPath
+ * @returns { Array }
+ */
+export const getPlainNode = (nodeList, parentPath = '') => {
   const arr = [];
   nodeList.forEach(node => {
     const item = node;
@@ -280,28 +288,38 @@ export function getPlainNode(nodeList, parentPath = '') {
     }
   });
   return arr;
-}
+};
 
 /**
  * @description
  * @param {*} e
  * @param {*} _this
  */
-export function routerGoBack(e, _this) {
+export const routerGoBack = (e, _this) => {
   if (e) {
     e.preventDefault();
   }
   _this.props.history.goBack();
-}
+};
 
-export function getApiMethod(api = '', options = {}) {
+/**
+ * @description
+ * @param { String } api
+ * @param { Array } options
+ */
+export const getApiMethod = (api = '', options = {}) => {
   if (options.method) {
     return options.method;
   }
   return get(trim(api).match(/^.* /), 0) || 'GET';
-}
+};
 
-export function uniqId(len = 6, radix = 60) {
+/**
+ * @description
+ * @param { Number } len
+ * @param { Number } radix
+ */
+export const uniqId = (len = 6, radix = 60) => {
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
   const uuid = [];
   let i;
@@ -326,13 +344,15 @@ export function uniqId(len = 6, radix = 60) {
   }
 
   return uuid.join('');
-}
+};
 
-export function formatNumDec(number, length = 3, fix = 2) {
-  return formatNum(numFixed(number, fix), length);
-}
-
-export function formatNum(num, length = 3, formatter = ',') {
+/**
+ * @description
+ * @param { Number } num
+ * @param { Number } length
+ * @param { Number } formatter
+ */
+export const formatNum = (num, length = 3, formatter = ',') => {
   let number = num;
   number = String(number || 0);
   const numArr = number.split('.') || ['', ''];
@@ -346,16 +366,34 @@ export function formatNum(num, length = 3, formatter = ',') {
   }
 
   return strAry.join('') + (numArr[1] ? `.${numArr[1]}` : '');
-}
+};
 
-export function numFixed(number, fix = 2) {
+/**
+ *
+ * @param { Number } number
+ * @param { Number } fix
+ */
+export const numFixed = (number, fix = 2) => {
   if (isNaN(Number(number)) || !isFinite(Number(number))) {
     return 0;
   }
   return Number(number).toFixed(fix);
-}
+};
+/**
+ * @description
+ * @param { Number } number
+ * @param { Number } length
+ * @param { Number } fix
+ */
+export const formatNumDec = (number, length = 3, fix = 2) =>
+  formatNum(numFixed(number, fix), length);
 
-export function getter(source, filed) {
+/**
+ * @description
+ * @param {*} source
+ * @param { Array } filed
+ */
+export const getter = (source, filed) => {
   let result = source;
   if (isArray(filed)) {
     result = pick(source, filed);
@@ -363,17 +401,27 @@ export function getter(source, filed) {
     result = get(source, filed);
   }
   return result;
-}
+};
 
-export function divideNumber(source) {
+/**
+ * @description
+ * @param { String} source
+ */
+export const divideNumber = source => {
   const result =
     String(source).indexOf('.') !== -1
       ? source.toLocaleString()
       : source.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
   return result;
-}
+};
 
-export function formatStringByType(type, source, opts = {}) {
+/**
+ * @description
+ * @param { String } type
+ * @param { Int } source
+ * @param { Array } opts
+ */
+export const formatStringByType = (type, source, opts = {}) => {
   let result;
   switch (type) {
     case 'Number.Int':
@@ -405,13 +453,21 @@ export function formatStringByType(type, source, opts = {}) {
   }
 
   return String(result);
-}
+};
 
-export function fixedZero(val) {
-  return val * 1 < 10 ? `0${val}` : val;
-}
+/**
+ * @description
+ * @param { Int } val
+ *
+ */
+export const fixedZero = val => (val * 1 < 10 ? `0${val}` : val);
 
-export function getTimeDistance(type) {
+/**
+ * @description
+ * @param { String } type
+ * @returns { Array }
+ */
+export const getTimeDistance = type => {
   const now = new Date();
   const oneDay = 1000 * 60 * 60 * 24;
 
@@ -453,9 +509,14 @@ export function getTimeDistance(type) {
   } else {
     return [];
   }
-}
+};
 
-export function digitUppercase(n) {
+/**
+ * @description
+ * @param { Number } n
+ * @returns { String} s
+ */
+export const digitUppercase = n => {
   const fraction = ['角', '分'];
   const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
   const unit = [
@@ -482,7 +543,7 @@ export function digitUppercase(n) {
     .replace(/(零.)*零元/, '元')
     .replace(/(零.)+/g, '零')
     .replace(/^整$/, '零元整');
-}
+};
 
 /**
  * @description 千分位
@@ -501,7 +562,7 @@ export const parserSemicolon = value => `${value}`.replace(/(,*)/g, '');
  * @param {String} value
  * @returns {String} length 长度
  */
-export function patternSpString(value) {
+export const patternSpString = value => {
   const pattern = new RegExp('[\'":%]');
   return pattern.test(value);
-}
+};

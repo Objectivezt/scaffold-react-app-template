@@ -4,7 +4,7 @@ module.exports = {
     'airbnb-typescript',
     'prettier',
     'prettier/react',
-    'prettier/@typescript-eslint',
+    'prettier/@typescript-eslint'
   ].map(key => require.resolve(`eslint-config-${key}`)),
   plugins: [
     '@typescript-eslint',
@@ -15,7 +15,7 @@ module.exports = {
     'react',
     'jsx-a11y',
     'import',
-    'prettier',
+    'prettier'
   ],
   env: {
     browser: true,
@@ -23,19 +23,19 @@ module.exports = {
     es6: true,
     mocha: true,
     jest: true,
-    jasmine: true,
+    jasmine: true
   },
   parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
-      legacyDecorators: true,
-    },
+      legacyDecorators: true
+    }
   },
   settings: {
     // support import modules from TypeScript files in JavaScript files
     'import/resolver': { node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] } },
-    polyfills: ['fetch', 'Promise', 'URL', 'object-assign'],
+    polyfills: ['fetch', 'Promise', 'URL', 'object-assign']
   },
   rules: {
     // ===================== use same as fabric config ====================================
@@ -62,9 +62,9 @@ module.exports = {
           '^@services/',
           '^@styles/',
           '^@utils/',
-          '^@setting/',
-        ],
-      },
+          '^@setting/'
+        ]
+      }
     ],
     'import/order': 'warn',
     'import/no-extraneous-dependencies': [
@@ -78,9 +78,9 @@ module.exports = {
           '**/**.test.{ts,js,jsx,tsx}',
           '**/_mock.{ts,js,jsx,tsx}',
           '**/example/**.{ts,js,jsx,tsx}',
-          '**/examples/**.{ts,js,jsx,tsx}',
-        ],
-      },
+          '**/examples/**.{ts,js,jsx,tsx}'
+        ]
+      }
     ],
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'jsx-a11y/click-events-have-key-events': 0,
@@ -103,11 +103,11 @@ module.exports = {
     // Makes no sense to allow type inferrence for expression parameters, but require typing the response
     '@typescript-eslint/explicit-function-return-type': [
       'off',
-      { allowTypedFunctionExpressions: true },
+      { allowTypedFunctionExpressions: true }
     ],
     '@typescript-eslint/no-use-before-define': [
       'error',
-      { functions: false, classes: true, variables: true, typedefs: true },
+      { functions: false, classes: true, variables: true, typedefs: true }
     ],
     '@typescript-eslint/no-var-requires': 0,
 
@@ -146,7 +146,7 @@ module.exports = {
     'no-else-return': 0,
     'no-extra-boolean-cast': 0,
     'no-useless-escape': 0,
-    'no-useless-escape': 0,
+    'no-plusplus': 0,
     'prettier/prettier': 2,
     'react/display-name': 0,
     'react/display-name': 0,
@@ -155,6 +155,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react/no-deprecated': 0,
     'react/sort-comp': 0,
-    'react/static-property-placement': 0,
-  },
+    'react/static-property-placement': 0
+  }
 };

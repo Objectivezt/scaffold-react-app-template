@@ -268,6 +268,53 @@ export const loadFiles = urls => Promise.all(urls.map(url => loadFile(url)));
 
 /**
  * @description
+ * @param {Function} fn
+ * @param {Number} time
+ */
+export const debounce = (fn, time = 3000) => {
+  let firstTime = '';
+  return (...rest) => {
+    const currentTime = new Date().getTime();
+    if (firstTime === '') {
+      firstTime = currentTime;
+    }
+    if (firstTime === currentTime || currentTime - firstTime >= time) {
+      fn.apply(this, rest);
+      firstTime = currentTime;
+    }
+  };
+};
+
+/**
+ * @description
+ * @param {*} value
+ * @param {*} dotNumber
+ * @returns
+ */
+export const moneyExhibition = (value, dotNumber) => {
+  if (value) {
+    const tempArray = Number(value)
+      .toFixed(dotNumber)
+      .split('.');
+    const prefixString = Number(tempArray[0].toLocaleString());
+    const suffixString = tempArray[1];
+    return `${prefixString}.${suffixString}`;
+  } else {
+    return '0';
+  }
+};
+
+/**
+ * @description
+ * @param {String} time
+ * @param {String} formatString
+ * @returns {String}
+ */
+export const timeExhibition = (time, formatString) =>
+  time ? moment(time).format(formatString) : '-';
+
+/**
+ * @description
  * @param { Array } nodeList
  * @param { String } parentPath
  * @returns { Array }
@@ -417,9 +464,60 @@ export const divideNumber = source => {
 
 /**
  * @description
+ * @param {*} value
+ * @returns
+ */
+export const parserFormatter = value => value.replace(/(,*)/g, '');
+
+/**
+ *
+ * @param {*} value
+ * @returns
+ */
+export const patternNumberWord = value => {
+  const pattern = new RegExp('^[0-9a-zA-Z]+$');
+  return pattern.test(value);
+};
+
+/**
+ *
+ * @param {String} value
+ * @param {Number} num
+ * @returns
+ */
+export const ellipsisTitle = (value = '', num = 0) => {
+  let tempValue;
+  if (value && value.length > num) {
+    tempValue = value.substring(0, num);
+    tempValue += '...';
+  } else {
+    tempValue = value;
+  }
+  return tempValue;
+};
+
+/**
+ * @description
+ * @param {String} value
+ * @returns
+ */
+export const getTrimValue = value => (value ? String(value).trim() : '');
+
+/**
+ *
+ * @param {*} value
+ * @returns
+ */
+export const patternString = value => {
+  const pattern = new RegExp('[\'":%]');
+  return pattern.test(value);
+};
+
+/**
+ * @description
  * @param { String } type
- * @param { Int } source
- * @param { Array } opts
+ * @param { Number } source
+ * @param { Object } opts
  */
 export const formatStringByType = (type, source, opts = {}) => {
   let result;
@@ -457,7 +555,7 @@ export const formatStringByType = (type, source, opts = {}) => {
 
 /**
  * @description
- * @param { Int } val
+ * @param { Number } val
  *
  */
 export const fixedZero = val => (val * 1 < 10 ? `0${val}` : val);
@@ -514,7 +612,7 @@ export const getTimeDistance = type => {
 /**
  * @description
  * @param { Number } n
- * @returns { String} s
+ * @returns { String}
  */
 export const digitUppercase = n => {
   const fraction = ['角', '分'];
@@ -565,4 +663,47 @@ export const parserSemicolon = value => `${value}`.replace(/(,*)/g, '');
 export const patternSpString = value => {
   const pattern = new RegExp('[\'":%]');
   return pattern.test(value);
+};
+
+/**
+ * @description
+ */
+export const supportEncrypt = () => {
+  const agent = navigator.userAgent.toLowerCase();
+  if (agent.indexOf('compatible') > -1 || agent.indexOf('msie') > -1) {
+    const IEVersion = RegExp.$1;
+    return parseFloat(IEVersion) > 8.0;
+  }
+
+  if (
+    agent.indexOf('opera') > -1 ||
+    agent.indexOf('firefox') > -1 ||
+    agent.indexOf('chrome') > -1 ||
+    agent.indexOf('trident') > -1
+  ) {
+    return true;
+  }
+
+  if (agent.indexOf('safari') > -1) {
+    return false;
+  }
+  return false;
+};
+
+/**
+ * @description
+ * @param {Object} time
+ * @returns {String}
+ */
+export const toDate = time => {
+  const year = time.getYear() + 1900;
+  let month = time.getMonth() + 1;
+  if (month < 10) {
+    month = `0${month}`;
+  }
+  let date = time.getDate();
+  if (date < 10) {
+    date = `0${date}`;
+  }
+  return `${year}-${month}-${date}`;
 };

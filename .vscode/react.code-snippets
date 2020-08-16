@@ -1,0 +1,23 @@
+{
+  "scaffold services request": {
+    "scope": "javascriptreact",
+    "prefix": "scaffold services request",
+    "body": [
+      "import request from '@utils/request';",
+    ],
+    "description": "导入src/services 目录下文件的通用请求文件"
+  },
+  "scaffold unit test template todo": {
+    "scope": "javascriptreact",
+    "prefix": "scaffold unit test template todo",
+    "body": [
+      "/**",
+      " * @description item",
+      " */",
+      "test('item', () => {",
+      "  // TODO",
+      "});"
+    ],
+    "description": "单元测试TODO模版"
+  }
+}

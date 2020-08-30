@@ -51,6 +51,6 @@ module.exports = {
     modules: ['node_modules', 'src']
   },
   aliasFactory: aliasFactoryFn,
-  aliasConfig: aliasConfigData
-  // mode: true
+  aliasConfig: aliasConfigData,
+  mode: true
 };

@@ -56,22 +56,22 @@ const dynamicWrapper = (app, models, component) => {
 export const getRouterData = app => {
   const routerConfig = {
     '/': {
-      component: dynamicWrapper(app, [], () => import('@layouts/BlankLayout'))
+      component: dynamicWrapper(app, [], () => import('@scaffold/core/src/layouts/BlankLayout'))
     },
     '/user': {
       component: dynamicWrapper(app, ['globalModel', 'systems/userModel'], () =>
-        import('@layouts/UserLayout')
+        import('@scaffold/core/src/layouts/UserLayout')
       )
     },
     '/user/login': {
       component: dynamicWrapper(app, ['systems/loginModel'], () =>
-        import('@containers/Systems/Login')
+        import('@scaffold/core/src/containers/Systems/Login')
       )
     },
 
     '/auth': {
       component: dynamicWrapper(app, ['globalModel', 'systems/userModel'], () =>
-        import('@layouts/AuthLayout')
+        import('@scaffold/core/src/layouts/AuthLayout')
       )
     },
     '/auth/app': {

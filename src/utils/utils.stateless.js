@@ -8,6 +8,8 @@ const { Option } = Select;
 const FormItem = Form.Item;
 const { Item: MenuItem } = Menu;
 
+export { CreateMenuItem } from '@scaffold/core/src/utils/utils.stateless';
+
 /**
  * @description 表单问号提示
  * @param {String} text

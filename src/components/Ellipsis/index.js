@@ -3,17 +3,14 @@ import { Tooltip } from 'antd';
 import classNames from 'classnames';
 import styles from './index.less';
 
-/* eslint react/no-did-mount-set-state: 0 */
-/* eslint no-param-reassign: 0 */
-
 const isSupportLineClamp = document.body.style.webkitLineClamp !== undefined;
 
-const EllipsisText = ({ text, length, tooltip, ...other }) => {
+const EllipsisText = ({ text, length, tooltip }) => {
   if (typeof text !== 'string') {
     throw new Error('Ellipsis children must be string.');
   }
   if (text.length <= length || length < 0) {
-    return <span {...other}>{text}</span>;
+    return <span>{text}</span>;
   }
   const tail = '...';
   let displayText;
@@ -35,7 +32,7 @@ const EllipsisText = ({ text, length, tooltip, ...other }) => {
   }
 
   return (
-    <span {...other}>
+    <span>
       {displayText}
       {tail}
     </span>
@@ -43,10 +40,13 @@ const EllipsisText = ({ text, length, tooltip, ...other }) => {
 };
 
 export default class Ellipsis extends Component {
-  state = {
-    text: '',
-    targetCount: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: '',
+      targetCount: 0
+    };
+  }
 
   componentDidMount() {
     if (this.node) {
@@ -100,10 +100,12 @@ export default class Ellipsis extends Component {
     let mid = m;
     let end = e;
     let begin = b;
+    // eslint-disable-next-line no-param-reassign
     shadowNode.innerHTML = text.substring(0, mid) + suffix;
     let sh = shadowNode.offsetHeight;
 
     if (sh <= th) {
+      // eslint-disable-next-line no-param-reassign
       shadowNode.innerHTML = text.substring(0, mid + 1) + suffix;
       sh = shadowNode.offsetHeight;
       if (sh > th) {
@@ -116,6 +118,7 @@ export default class Ellipsis extends Component {
     if (mid - 1 < 0) {
       return mid;
     }
+    // eslint-disable-next-line no-param-reassign
     shadowNode.innerHTML = text.substring(0, mid - 1) + suffix;
     sh = shadowNode.offsetHeight;
     if (sh <= th) {
@@ -148,7 +151,7 @@ export default class Ellipsis extends Component {
 
   render() {
     const { text, targetCount } = this.state;
-    const { children, lines, length, className, tooltip, ...restProps } = this.props;
+    const { children, lines, length, className, tooltip } = this.props;
 
     const cls = classNames(styles.ellipsis, className, {
       [styles.lines]: lines && !isSupportLineClamp,
@@ -156,23 +159,13 @@ export default class Ellipsis extends Component {
     });
 
     if (!lines && !length) {
-      return (
-        <span className={cls} {...restProps}>
-          {children}
-        </span>
-      );
+      return <span className={cls}>{children}</span>;
     }
 
     // length
     if (!lines) {
       return (
-        <EllipsisText
-          className={cls}
-          length={length}
-          text={children || ''}
-          tooltip={tooltip}
-          {...restProps}
-        />
+        <EllipsisText className={cls} length={length} text={children || ''} tooltip={tooltip} />
       );
     }
 
@@ -182,7 +175,7 @@ export default class Ellipsis extends Component {
     if (isSupportLineClamp) {
       const style = `#${id}{-webkit-line-clamp:${lines};-webkit-box-orient: vertical;}`;
       return (
-        <div id={id} className={cls} {...restProps}>
+        <div id={id} className={cls}>
           <style>{style}</style>
           {tooltip ? (
             <Tooltip overlayStyle={{ wordBreak: 'break-all' }} title={children}>
@@ -203,7 +196,7 @@ export default class Ellipsis extends Component {
     );
 
     return (
-      <div {...restProps} ref={this.handleRoot} className={cls}>
+      <div ref={this.handleRoot} className={cls}>
         <div ref={this.handleContent}>
           {tooltip ? (
             <Tooltip overlayStyle={{ wordBreak: 'break-all' }} title={text}>

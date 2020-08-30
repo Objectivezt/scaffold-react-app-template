@@ -78,7 +78,7 @@ export const getRouterData = app => {
       component: dynamicWrapper(app, [], () => import('@containers/Dashboard')),
       name: '系统主页'
     },
-
+    // DEMO 页
     '/auth/js/page': {
       component: dynamicWrapper(app, [], () => import('@containers/Demo/JsPage')),
       name: 'JSPage'
@@ -89,15 +89,21 @@ export const getRouterData = app => {
     },
     // 错误页
     '/auth/exception/403': {
-      component: dynamicWrapper(app, [], () => import('@containers/Exception/403')),
+      component: dynamicWrapper(app, [], () =>
+        import('@scaffold/core/src/containers/Exception/403')
+      ),
       name: '403'
     },
     '/auth/exception/404': {
-      component: dynamicWrapper(app, [], () => import('@containers/Exception/404')),
+      component: dynamicWrapper(app, [], () =>
+        import('@scaffold/core/src/containers/Exception/404')
+      ),
       name: '404'
     },
     '/auth/exception/500': {
-      component: dynamicWrapper(app, [], () => import('@containers/Exception/500')),
+      component: dynamicWrapper(app, [], () =>
+        import('@scaffold/core/src/containers/Exception/500')
+      ),
       name: '500'
     }
   };

@@ -50,8 +50,7 @@ function generator({ defaultProps, defaultRules, type }) {
       render() {
         const { getFieldDecorator } = this.context.form;
         const options = {};
-        let otherProps = {};
-        const { onChange, defaultValue, rules, name, ...restProps } = this.props;
+        const { onChange, defaultValue, rules, name } = this.props;
         const { count } = this.state;
         options.rules = rules || defaultRules;
         if (onChange) {
@@ -60,9 +59,8 @@ function generator({ defaultProps, defaultRules, type }) {
         if (defaultValue) {
           options.initialValue = defaultValue;
         }
-        otherProps = restProps || otherProps;
         if (type === 'Captcha') {
-          const inputProps = omit(otherProps, ['onGetCaptcha']);
+          const inputProps = omit({}, ['onGetCaptcha']);
           return (
             <FormItem>
               <Row gutter={8}>
@@ -77,8 +75,7 @@ function generator({ defaultProps, defaultRules, type }) {
                     disabled={count}
                     className={styles.getCaptcha}
                     size="large"
-                    onClick={this.onGetCaptcha}
-                  >
+                    onClick={this.onGetCaptcha}>
                     {count ? `${count} s` : '获取验证码'}
                   </Button>
                 </Col>
@@ -88,10 +85,7 @@ function generator({ defaultProps, defaultRules, type }) {
         }
         return (
           <FormItem>
-            {getFieldDecorator(
-              name,
-              options
-            )(<WrappedComponent {...defaultProps} {...otherProps} />)}
+            {getFieldDecorator(name, options)(<WrappedComponent {...defaultProps} />)}
           </FormItem>
         );
       }

@@ -52,4 +52,5 @@ module.exports = {
   },
   aliasFactory: aliasFactoryFn,
   aliasConfig: aliasConfigData
+  // mode: true
 };

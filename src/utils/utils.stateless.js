@@ -101,17 +101,15 @@ export function createDynamicFormItem(value, name) {
     right: '15px'
   };
 
-  const item = () => (
+  const item = text => (
     <div style={style}>
-      <Ellipsis tooltip length={8}>
-        {name}
-      </Ellipsis>
+      <Ellipsis tooltip length={8} text={text} />
     </div>
   );
 
   return (
     <Col {...globalColProps} key={value}>
-      <FormItem label={item} {...globalFormItemLayout}>
+      <FormItem label={item(name)} {...globalFormItemLayout}>
         {name}
       </FormItem>
     </Col>

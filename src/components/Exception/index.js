@@ -4,11 +4,11 @@ import { Button } from 'antd';
 import config from './typeConfig';
 import styles from './index.module.less';
 
-const Exception = ({ className, linkElement = 'a', type, title, desc, img, actions, ...rest }) => {
+const Exception = ({ className, linkElement = 'a', type, title, desc, actions }) => {
   const pageType = type in config ? type : '404';
   const clsString = classNames(styles.exception, className);
   return (
-    <div className={clsString} {...rest}>
+    <div className={clsString}>
       <div className={styles.content}>
         <h1>{title || config[pageType].title}</h1>
         <div className={styles.desc}>{desc || config[pageType].desc}</div>

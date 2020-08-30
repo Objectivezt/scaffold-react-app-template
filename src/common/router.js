@@ -56,22 +56,24 @@ const dynamicWrapper = (app, models, component) => {
 export const getRouterData = app => {
   const routerConfig = {
     '/': {
-      component: dynamicWrapper(app, [], () => import('@scaffold/core/src/layouts/BlankLayout'))
+      component: dynamicWrapper(app, [], () =>
+        import('@scaffold/middle-service/src/layouts/BlankLayout')
+      )
     },
     '/user': {
       component: dynamicWrapper(app, ['globalModel', 'systems/userModel'], () =>
-        import('@scaffold/core/src/layouts/UserLayout')
+        import('@scaffold/middle-service/src/layouts/UserLayout')
       )
     },
     '/user/login': {
       component: dynamicWrapper(app, ['systems/loginModel'], () =>
-        import('@scaffold/core/src/containers/Systems/Login')
+        import('@scaffold/middle-service/src/containers/Systems/Login')
       )
     },
 
     '/auth': {
       component: dynamicWrapper(app, ['globalModel', 'systems/userModel'], () =>
-        import('@scaffold/core/src/layouts/AuthLayout')
+        import('@scaffold/middle-service/src/layouts/AuthLayout')
       )
     },
     '/auth/app': {
@@ -90,19 +92,19 @@ export const getRouterData = app => {
     // 错误页
     '/auth/exception/403': {
       component: dynamicWrapper(app, [], () =>
-        import('@scaffold/core/src/containers/Exception/403')
+        import('@scaffold/middle-service/src/containers/Exception/403')
       ),
       name: '403'
     },
     '/auth/exception/404': {
       component: dynamicWrapper(app, [], () =>
-        import('@scaffold/core/src/containers/Exception/404')
+        import('@scaffold/middle-service/src/containers/Exception/404')
       ),
       name: '404'
     },
     '/auth/exception/500': {
       component: dynamicWrapper(app, [], () =>
-        import('@scaffold/core/src/containers/Exception/500')
+        import('@scaffold/middle-service/src/containers/Exception/500')
       ),
       name: '500'
     }
